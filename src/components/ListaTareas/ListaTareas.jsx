@@ -1,7 +1,6 @@
 import Tarea from "../Tarea/Tarea.jsx";
 
-function ListaTareas({ tareas, eliminarTarea, actualizarTarea }) {
-  console.log("ListaTareas", tareas);
+function ListaTareas({ tareas, eliminarTarea, seleccionarTareaParaEditar }) {
   return (
     <div>
       {tareas.length === 0 ? (
@@ -12,7 +11,7 @@ function ListaTareas({ tareas, eliminarTarea, actualizarTarea }) {
             key={tarea.id}
             tarea={tarea}
             eliminarTarea={eliminarTarea}
-            actualizarTarea={actualizarTarea}
+            seleccionarTareaParaEditar={seleccionarTareaParaEditar}
           />
         ))
       )}
