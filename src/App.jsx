@@ -9,9 +9,10 @@ function App() {
     return tareasGuardadas ? JSON.parse(tareasGuardadas) : [];
   });
 
+  const [tareaEditando, setTareaEditando] = useState(null); // Estado para la tarea en edición
+
   useEffect(() => {
     localStorage.setItem("tareas", JSON.stringify(tareas));
-    console.log("Tareas guardadas en localStorage:", tareas);
   }, [tareas]);
 
   const agregarTarea = (titulo, descripcion) => {
@@ -34,17 +35,26 @@ function App() {
         tarea.id === id ? { ...tarea, ...nuevosDatos } : tarea
       )
     );
+    setTareaEditando(null); // Reinicia el estado de edición
+  };
+
+  const seleccionarTareaParaEditar = (tarea) => {
+    setTareaEditando(tarea); // Establece la tarea seleccionada para edición
   };
 
   return (
     <>
       <div>
         <h1>Gestión de Tareas</h1>
-        <FormularioTarea agregarTarea={agregarTarea} />
+        <FormularioTarea
+          agregarTarea={agregarTarea}
+          actualizarTarea={actualizarTarea}
+          tareaEditando={tareaEditando}
+        />
         <ListaTareas
           tareas={tareas}
           eliminarTarea={eliminarTarea}
-          actualizarTarea={actualizarTarea}
+          seleccionarTareaParaEditar={seleccionarTareaParaEditar}
         />
       </div>
     </>

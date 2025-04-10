@@ -1,9 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function FormularioTarea({ agregarTarea, actualizarTarea }) {
+function FormularioTarea({ agregarTarea, actualizarTarea, tareaEditando }) {
   const [titulo, setTitulo] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [error, setError] = useState("");
+
+  // Cargar los datos de la tarea en edición al formulario
+  useEffect(() => {
+    if (tareaEditando) {
+      setTitulo(tareaEditando.titulo);
+      setDescripcion(tareaEditando.descripcion);
+    } else {
+      setTitulo("");
+      setDescripcion("");
+    }
+  }, [tareaEditando]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,8 +27,15 @@ function FormularioTarea({ agregarTarea, actualizarTarea }) {
       return;
     }
     setError("");
-    agregarTarea(titulo, descripcion); // Llama a agregarTarea con los valores correctos
-    actualizarTarea(titulo, descripcion); // Llama a actualizarTarea con los valores correctos
+
+    if (tareaEditando) {
+      // Actualizar tarea existente
+      actualizarTarea(tareaEditando.id, { titulo, descripcion });
+    } else {
+      // Agregar nueva tarea
+      agregarTarea(titulo, descripcion);
+    }
+
     setTitulo("");
     setDescripcion("");
   };
@@ -54,8 +72,8 @@ function FormularioTarea({ agregarTarea, actualizarTarea }) {
           placeholder="Escribe una descripción (opcional)"
         ></textarea>
       </div>
-      <button type="submit" disabled={!!error || !titulo.trim()}>
-        Agregar Tarea
+      <button type="submit">
+        {tareaEditando ? "Guardar Cambios" : "Agregar Tarea"}
       </button>
     </form>
   );
