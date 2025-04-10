@@ -1,42 +1,84 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* General styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fef6e4; /* Pastel cream */
+  color: #6246ea; /* Pastel purple */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Container */
+div {
+  background-color: #e8eaf6; /* Light pastel blue */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 500px;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Heading */
+h1 {
+  color: #ff6f61; /* Pastel coral */
+  font-size: 2rem;
+  margin-bottom: 20px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Form styles */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Input and Textarea */
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #bdbdbd;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #ffffff; /* White */
+  color: #333333;
 }
 
-.card {
-  padding: 2em;
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: #6246ea; /* Pastel purple */
+  box-shadow: 0 0 5px rgba(98, 70, 234, 0.5);
 }
 
-.read-the-docs {
-  color: #888;
+/* Button */
+button {
+  background-color: #ff6f61; /* Pastel coral */
+  color: #ffffff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:disabled {
+  background-color: #bdbdbd; /* Gray for disabled */
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #e55b50; /* Slightly darker pastel coral */
+}
+
+/* Error message */
+p {
+  color: #d32f2f; /* Pastel red for errors */
+  font-size: 0.9rem;
+  margin: 0;
 }
